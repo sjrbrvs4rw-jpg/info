@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>firebase_form</title>
+    <link rel="stylesheet" href="styl.css">
+</head>
+
+<body>
+    <div class="box">
+        <div class="form">
+
+            <h2>Login Form</h2>
+
+            <form>
+
+                <div class="inputbox">
+                    <input type="text" id="nome" placeholder="Nathalia" required>
+                    <span>Username</span>
+                </div>
+
+                <div class="inputbox">
+                    <input type="email" id="email" placeholder="ex: asafe@asafe.com" required>
+                    <span>E-mail</span>
+                </div>
+
+                <div class="inputbox">
+                    <input type="text" id="phone" placeholder="31 9 95357543" required>
+                    <span>Phone Number</span>
+                </div>
+
+                <input type="submit" value="submit" class="sub" id="submit">
+
+            </form>
+        </div>
+    </div>
+
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+    import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-database.js";
+    
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+  apiKey: "AIzaSyCZujfpPiQORQYSj8KPJL6hXZkubstKMec",
+  authDomain: "fir-one-1af8f.firebaseapp.com",
+  databaseURL: "https://fir-one-1af8f-default-rtdb.firebaseio.com",
+  projectId: "fir-one-1af8f",
+  storageBucket: "fir-one-1af8f.firebasestorage.app",
+  messagingSenderId: "640625572170",
+  appId: "1:640625572170:web:2cc80676ff82dd535d69b3"
+};
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+      //get ref to database services
+    const db = getDatabase(app); 
+
+    document.getElementById("submit").addEventListener('click', function(e){
+    e.preventDefault();
+        set(ref(db, 'Amigas/'+ document.getElementById("nome").value),
+          {
+                     username: document.getElementById("nome").value,
+                     email: document.getElementById("email").value,
+                     PhoneNumber: document.getElementById("phone").value
+          });
+            alert("Login Sucessfu11 !");
+        })
+    </script>
+  </body>
+</html>
+         
+
